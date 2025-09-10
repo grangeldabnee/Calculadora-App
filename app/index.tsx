@@ -13,7 +13,16 @@ const CalculatorApp = () => {
     formula,
     buildNumber,
     clean,
-    toggleSing
+    toggleSing,
+    deleteLast,
+    prevNumber,
+    divideOperation,
+    multiplyOperation,
+    substractOperation,
+    addOperation,
+    calculateSubResult,
+    calculateResult
+  
   } = useCalculator();
 
   return (  
@@ -22,7 +31,11 @@ const CalculatorApp = () => {
       {/* Resultados */}
       <View style={{paddingHorizontal:30, paddingBottom:20,}}>
         <ThemeText variant='h1' >{formula}</ThemeText>
-        <ThemeText variant='h2'>500</ThemeText>
+        {formula === prevNumber ?(
+          <ThemeText variant='h2'> </ThemeText>
+        ):
+          <ThemeText variant='h2'>{prevNumber}</ThemeText>
+        }
       </View>
       {/* Fila de botones */}
       <View style={globalStyles.row}>
@@ -42,12 +55,12 @@ const CalculatorApp = () => {
         label='DEL' 
         blackText 
         color={Colors.lightGray}
-        onPress={()=>console.log('DEL')  } 
+        onPress={deleteLast}
         /> 
         <CalculatorBotom 
         label='÷' 
         color={Colors.orange} 
-        onPress={()=>console.log('÷')  }
+        onPress={divideOperation}
         /> 
       </View>
       {/* Segunda fila  */}
@@ -55,27 +68,27 @@ const CalculatorApp = () => {
         <CalculatorBotom label='7' onPress={()=>buildNumber('7')} /> 
         <CalculatorBotom label='8' onPress={()=>buildNumber('8')}/> 
         <CalculatorBotom label='9' onPress={()=>buildNumber('9')} /> 
-        <CalculatorBotom label='x' color = {Colors.orange} onPress={()=>buildNumber('x')}/> 
+        <CalculatorBotom label='x' color = {Colors.orange} onPress={multiplyOperation}/> 
       </View>
       {/* tercera fila */}
       <View style={globalStyles.row}>
         <CalculatorBotom label='4' onPress={()=>buildNumber('4')} /> 
         <CalculatorBotom label='5' onPress={()=>buildNumber('5')}/> 
         <CalculatorBotom label='6' onPress={()=>buildNumber('6')} /> 
-        <CalculatorBotom label='-' color = {Colors.orange} onPress={()=>buildNumber('-')}/> 
+        <CalculatorBotom label='-' color = {Colors.orange} onPress={substractOperation}/> 
       </View>
       {/* cuarta fila */}
       <View style={globalStyles.row}>
         <CalculatorBotom label='1' onPress={()=>buildNumber('1')} /> 
         <CalculatorBotom label='2' onPress={()=>buildNumber('2')}/> 
         <CalculatorBotom label='3' onPress={()=>buildNumber('3')} /> 
-        <CalculatorBotom label='+' color = {Colors.orange} onPress={()=>buildNumber('+')}/> 
+        <CalculatorBotom label='+' color = {Colors.orange} onPress={addOperation}/> 
       </View>      
       {/* quinta */}
       <View style={globalStyles.row}>
         <CalculatorBotom label='0' doubleSize onPress={()=>buildNumber('0')} /> 
         <CalculatorBotom label='.' onPress={()=>buildNumber('.')}/> 
-        <CalculatorBotom label='=' color = {Colors.orange} onPress={()=>console.log('=')}/> 
+        <CalculatorBotom label='=' color = {Colors.orange} onPress={calculateResult}/> 
       </View>      
     </View>
   )
